@@ -1,8 +1,10 @@
 .game {
     display: inline-block;
     border: 1px solid grey;
-    margin-left: 200px;
-    margin-top: 200px;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%);
 }
     .header{
         display: inline-block;
