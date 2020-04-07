@@ -51,9 +51,14 @@ addBomb(){
 
 autoAction(){
     if(this.parent.playState && this.clickState){
+        this.parent.clickCount++
+
+        if(this.parent.boxCount - this.parent.bombsNumber == this.parent.clickCount){
+            this.parent.win()
+        }
+
         this.boxHTML.classList.add("box-pressed")
         this.clickState = false
-        this.parent.clickCount++
         this.parent.checkBombs(this.boxHTML,this.x,this.y,this.index)
     }
 }
