@@ -80,17 +80,16 @@ class Minesweeper {
          }
     }
     checkBombs(box,x,y,index){
-        console.log(x,y)
         let counter = 0
-  
+        
         if(x>0&&y>0&&
             this.boxes[(index - this.eilutes)-1].hasbomb) counter++
         if(y>0&&
             this.boxes[(index - this.eilutes)].hasbomb) counter++
         if(y>0&& x<(this.eilutes-1)&&
             this.boxes[(index - this.eilutes)+1].hasbomb) counter++
-        if(this.boxes[index-1].hasbomb) counter++
-        if(this.boxes[index+1].hasbomb) counter++
+        if(x>0 && this.boxes[index-1].hasbomb) counter++
+        if(x<(this.eilutes-1) && this.boxes[index+1].hasbomb) counter++
         if(x>0&& y<(this.stulpeliai-1)&&
             this.boxes[(index + this.eilutes)-1].hasbomb) counter++
         if(y<(this.stulpeliai-1)&&
@@ -98,12 +97,52 @@ class Minesweeper {
         if(x<(this.stulpeliai-1)&& y<(this.stulpeliai-1)&&
             this.boxes[(index + this.eilutes)+1].hasbomb) counter++
 
-        box.innerText = counter
-        
-        
+        if (counter >0){
+            box.innerText = counter
+        }
+        if(counter === 0){
+            this.ceckAround(box,x,y,index)
+        }    
+    }
+    ceckAround(box,x,y,index){
+        console.log(x,y)
+        let upLeft = index - this.eilutes -1
+        let up = index - this.eilutes
+        let upRight = index - this.eilutes + 1
+        let Left = index -1
+        let Right = index +1
+        let bottomLeft = index + this.eilutes -1
+        let bottom = index + this.eilutes 
+        let bottomRight = index + this.eilutes +1
+
+        if (x>0&&y>0&& upLeft >=0){
+            this.boxes[upLeft].autoAction()
+        }
+        if (y>0&& up >=0){
+            this.boxes[up].autoAction()
+        }
+        if ( y>0 && x<(this.eilutes-1) && upRight >=0){
+            this.boxes[upRight].autoAction()
+        }
+        if (x>0){
+            this.boxes[Left].autoAction()
+        }
+        if (x<(this.eilutes-1)){
+            this.boxes[Right].autoAction()
+        }
+        if (x>0 && y<(this.stulpeliai -1)){
+            this.boxes[bottomLeft].autoAction()
+        }
+        if (y<(this.stulpeliai -1)){
+            this.boxes[bottom].autoAction()
+        }
+        if (x<(this.eilutes-1) && y<(this.stulpeliai -1)){
+            this.boxes[bottomRight].autoAction()
+        }
+   
     }
 }
 
-let game = new Minesweeper("game", 10, 10, 20)
+let game = new Minesweeper("game", 10, 10, 10)
 
 

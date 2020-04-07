@@ -27,7 +27,8 @@
         padding-top: 3px;
         transform: rotate(90deg);
         margin-left: calc(50% - 75px);
-        background-color: grey  ;
+        background-color: grey;
+        cursor: pointer;
     }
     .timer{
         display: inline-block;

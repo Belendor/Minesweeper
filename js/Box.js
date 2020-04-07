@@ -9,6 +9,7 @@ class Box{
         this.boxHTML = null
         this.iniatial()
         this.hasbomb = false
+        this.clickState = true
     }
 
 iniatial(){
@@ -21,28 +22,36 @@ iniatial(){
 
 }
 action(e){
-    if(this.parent.playState){
+    if(this.parent.playState && this.clickState){
     let targetedBox = e.target
         targetedBox.classList.add("box-pressed")
         console.log(this.index)
         this.parent.clickCount++
-        
-        
+  
         if(this.parent.clickCount === 1){
             this.parent.firstClickId = this.index
             this.parent.createBomb()
         }
         if(this.hasbomb){
             targetedBox.classList.add("expload")
-            this.parent.playState = false
+           return this.parent.playState = false
         }
-        
         this.parent.checkBombs(targetedBox,this.x,this.y,this.index)
+        this.clickState = false
     }     
 }
 addBomb(){
     this.hasbomb = true
     this.boxHTML.innerText = "B"
+}
+
+autoAction(){
+    if(this.parent.playState && this.clickState){
+        this.boxHTML.classList.add("box-pressed")
+        this.clickState = false
+        this.parent.clickCount++
+        this.parent.checkBombs(this.boxHTML,this.x,this.y,this.index)
+    }
 }
 
 }
