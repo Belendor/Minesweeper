@@ -27,22 +27,26 @@ action(e){
         targetedBox.classList.add("box-pressed")
         console.log(this.index)
         this.parent.clickCount++
+        this.clickState = false
+        console.log((this.parent.boxCount - this.parent.bombsNumber),this.parent.clickCount)
+        if(this.parent.boxCount - this.parent.bombsNumber == this.parent.clickCount){
+            this.parent.win()
+        }
   
         if(this.parent.clickCount === 1){
             this.parent.firstClickId = this.index
             this.parent.createBomb()
         }
         if(this.hasbomb){
-            targetedBox.classList.add("expload")
+           targetedBox.classList.add("expload")
+           this.parent.lost()
            return this.parent.playState = false
         }
         this.parent.checkBombs(targetedBox,this.x,this.y,this.index)
-        this.clickState = false
     }     
 }
 addBomb(){
     this.hasbomb = true
-    this.boxHTML.innerText = "B"
 }
 
 autoAction(){

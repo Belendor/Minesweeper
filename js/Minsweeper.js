@@ -105,7 +105,6 @@ class Minesweeper {
         }    
     }
     ceckAround(box,x,y,index){
-        console.log(x,y)
         let upLeft = index - this.eilutes -1
         let up = index - this.eilutes
         let upRight = index - this.eilutes + 1
@@ -140,6 +139,13 @@ class Minesweeper {
             this.boxes[bottomRight].autoAction()
         }
    
+    }
+    lost(){
+        this.smile.sad()
+    }
+    win(){
+        this.playState = false 
+        this.smile.win()
     }
 }
 
