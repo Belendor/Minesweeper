@@ -2,7 +2,7 @@
     display: inline-block;
     border: 1px solid grey;
     position: absolute;
-    top: 100px;
+    top: 50px;
     left: 50%;
     transform: translate(-50%);
 }

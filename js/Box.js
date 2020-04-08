@@ -38,11 +38,12 @@ rightClick(e){
         }
 
     }
+   
         
     
 }
 action(e){
-    if(this.parent.playState && this.clickState){
+    if(this.parent.playState && this.clickState && !this.boxHTML.classList.contains("flag")){
     let targetedBox = e.target
 
     if(this.boxHTML.classList.contains("flag")){
@@ -69,10 +70,16 @@ action(e){
         }
         this.parent.checkBombs(targetedBox,this.x,this.y,this.index)
         
-    }     
+    }else if(this.boxHTML.classList.contains("flag")){
+        this.boxHTML.addEventListener("click", (e)=>{this.action(e)}, {once:true})
+    }
+         
 }
 addBomb(){
     this.hasbomb = true
+}
+showMine(){
+    this.boxHTML.innerHTML = "B"
 }
 
 autoAction(){

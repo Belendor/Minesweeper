@@ -149,6 +149,16 @@ class Minesweeper {
         this.smile.sad()
         this.playState = false
         this.timer.end()
+        for(let i = 0; i<this.boxes.length;i++){
+            if(this.boxes[i].hasbomb){
+                this.boxes[i].showMine()
+                if(this.boxes[i].boxHTML.classList.contains("flag")){
+                    this.boxes[i].boxHTML.classList.remove("flag")
+                    console.log("yra");
+                    
+                }
+            }
+        }
     }
     win(){
         this.playState = false 

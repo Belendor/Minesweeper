@@ -6,7 +6,7 @@ class Smile{
     }
     initial(){ 
         this.targetHTML.insertAdjacentHTML("beforeend",`<div class="smile">:)</div>`)
-        this.targetHTML.addEventListener("click", (e)=>{this.reset(e)})
+        this.targetHTML.querySelector(".smile").addEventListener("click", (e)=>{this.reset(e)})
     }
     reset(){
         

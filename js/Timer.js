@@ -20,6 +20,10 @@ class Timer{
         clearInterval(this.clock)
     }
     convert(number){
+        if(number>999){
+            return 999
+        }
+
         if(number<10){
             return "00"+number
         }
@@ -27,6 +31,7 @@ class Timer{
         if(number<100){
             return "0"+number
         } 
+        return number
     }
     
 }
