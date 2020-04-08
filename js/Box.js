@@ -25,6 +25,7 @@ iniatial(){
 
 }
 rightClick(e){
+    if(this.parent.playState){
     e.preventDefault()
     if(this.clickState){
         this.boxHTML.classList.toggle("flag")   
@@ -38,7 +39,7 @@ rightClick(e){
         }
 
     }
-   
+}
         
     
 }
