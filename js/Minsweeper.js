@@ -157,6 +157,6 @@ class Minesweeper {
     }
 }
 
-let game = new Minesweeper("game", 10, 10, 10)
+let game = new Minesweeper("game", 20, 20, 15)
 
 
