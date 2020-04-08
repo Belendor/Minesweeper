@@ -61,14 +61,12 @@ class Minesweeper {
        this.boxes.push(new Box(i, this.board, this, y ,x))
         
     }
-    this.timer = new Timer(this.header)
+    this.counter = new Counter(this.header,this.bombsNumber)
     this.smile = new Smile(this.header,this)
-    this.counter = new Counter(this.header)
+    this.timer = new Timer(this.header)
     }
 
     createBomb(){
-        console.log("kuariam boba")
-
         for(let i=0;i<this.bombsNumber;i++){
             let index =  Math.floor(Math.random() * this.boxCount)
             if(this.bombPositions.indexOf(index) === -1 && index !== this.firstClickId){
@@ -140,15 +138,25 @@ class Minesweeper {
         }
    
     }
+    bombCount(number){
+        this.counter.bombCount(number)
+    }
+    startTimer(){
+        this.timer.start()
+        
+    }
     lost(){
         this.smile.sad()
+        this.playState = false
+        this.timer.end()
     }
     win(){
         this.playState = false 
         this.smile.win()
+        this.timer.end()
     }
 }
 
-let game = new Minesweeper("game", 10, 10, 2)
+let game = new Minesweeper("game", 10, 10, 10)
 
 

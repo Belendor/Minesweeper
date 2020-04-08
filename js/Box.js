@@ -10,6 +10,7 @@ class Box{
         this.iniatial()
         this.hasbomb = false
         this.clickState = true
+        this.toggle = -1
     }
 
 iniatial(){
@@ -19,16 +20,39 @@ iniatial(){
     this.BoxId = "#Nr"+''+this.index
     this.boxHTML = this.board.querySelector(this.BoxId)
     this.boxHTML.addEventListener("click", (e)=>{this.action(e)}, {once:true})
+    this.boxHTML.addEventListener("contextmenu", (e)=>{this.rightClick(e)})
+    
 
+}
+rightClick(e){
+    e.preventDefault()
+    if(this.clickState){
+        this.boxHTML.classList.toggle("flag")   
+        if(this.toggle === 1){
+            this.parent.bombCount(1)
+            return this.toggle = -1
+        }
+        if(this.toggle === -1){
+            this.parent.bombCount(-1)
+            return this.toggle = 1
+        }
+
+    }
+        
+    
 }
 action(e){
     if(this.parent.playState && this.clickState){
     let targetedBox = e.target
+
+    if(this.boxHTML.classList.contains("flag")){
+        this.parent.bombCount(1)
+        this.boxHTML.classList.remove("flag")
+    }
         targetedBox.classList.add("box-pressed")
-        console.log(this.index)
+
         this.parent.clickCount++
         this.clickState = false
-        console.log((this.parent.boxCount - this.parent.bombsNumber),this.parent.clickCount)
         if(this.parent.boxCount - this.parent.bombsNumber == this.parent.clickCount){
             this.parent.win()
         }
@@ -36,6 +60,7 @@ action(e){
         if(this.parent.clickCount === 1){
             this.parent.firstClickId = this.index
             this.parent.createBomb()
+            this.parent.startTimer()
         }
         if(this.hasbomb){
            targetedBox.classList.add("expload")
@@ -43,6 +68,7 @@ action(e){
            return this.parent.playState = false
         }
         this.parent.checkBombs(targetedBox,this.x,this.y,this.index)
+        
     }     
 }
 addBomb(){
@@ -53,13 +79,23 @@ autoAction(){
     if(this.parent.playState && this.clickState){
         this.parent.clickCount++
 
+        if(this.boxHTML.classList.contains("flag")){
+            this.parent.bombCount(1)
+            this.boxHTML.classList.remove("flag")
+        }
+
         if(this.parent.boxCount - this.parent.bombsNumber == this.parent.clickCount){
             this.parent.win()
         }
-
+        
         this.boxHTML.classList.add("box-pressed")
         this.clickState = false
         this.parent.checkBombs(this.boxHTML,this.x,this.y,this.index)
+
+        if(this.boxHTML.classList.contains("flag")){
+            this.parent.bombCount(1)
+            this.boxHTML.classList.remove("flag")
+        }
     }
 }
 

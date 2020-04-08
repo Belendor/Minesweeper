@@ -18,7 +18,7 @@ class Smile{
     }
     win(){
         let smileHTML = this.targetHTML.querySelector(".smile")
-        smileHTML.innerText = "B("
+        smileHTML.innerText = "B)"
     }
 }
 

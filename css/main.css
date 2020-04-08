@@ -32,10 +32,10 @@
     }
     .timer{
         display: inline-block;
-        float: left;
-    }
-    .count{
         float: right;
+    }   
+    .count{
+        float: left;
     }
     .box{
         display: inline-block;
@@ -58,4 +58,20 @@
 
 .expload{
     background-color: red;
+    position: relative;
+}
+
+
+.flag{
+    position: relative;
+}
+.flag::before{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(190, 82, 252);
+    border-radius: 50%;
+    top: 3.5px;
+    left: 3.5px;
 }
